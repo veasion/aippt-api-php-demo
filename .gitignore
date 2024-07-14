@@ -1,0 +1,6 @@
+*.pptx
+.idea
+logs/
+temp/
+.env
+vendor/
