@@ -8,15 +8,15 @@ require 'Api.php';
 // 开放平台 https://docmee.cn/open-platform/api
 
 // 填写你的API-KEY
-$apiKey = "{{ YOUR API KEY }}";
+$apiKey = "YOUR API KEY";
 
 // 第三方用户ID（数据隔离）
-$userId = "test";
+$uid = "test";
 $subject = "AI未来的发展";
 
-// 创建 apiToken (有效期2小时，建议缓存到redis)
-$apiToken = Api::createApiToken($apiKey, $userId);
-echo "apiToken: " . $apiToken . "\n";
+// 创建 api token (有效期2小时，建议缓存到redis，同一个 uid 创建时之前的 token 会在10秒内失效)
+$apiToken = Api::createApiToken($apiKey, $uid, null);
+echo "api token: " . $apiToken . "\n";
 
 // 生成大纲
 echo "\n\n========== 正在生成大纲 ==========\n";

@@ -7,16 +7,17 @@ require 'HttpUtils.php';
 class Api
 {
 
-    const BASE_URL = "https://chatmee.cn/api";
+    const BASE_URL = "https://chatmee.cn";
 
-    public static function createApiToken($apiKey, $userId)
+    public static function createApiToken($apiKey, $uid, $limit)
     {
-        $url = Api::BASE_URL . "/user/createApiToken";
+        $url = Api::BASE_URL . "/api/user/createApiToken";
         $headers = [
             "Api-Key" => $apiKey
         ];
         $body = json_encode([
-            "uid" => $userId
+            "uid" => $uid,
+            "limit" => $limit
         ]);
         $resp = HttpUtils::postJson($url, $headers, $body);
         if ($resp["statusCode"] != 200) {
@@ -31,7 +32,7 @@ class Api
 
     public static function generateOutline($apiToken, $subject, $prompt = null, $dataUrl = null)
     {
-        $url = Api::BASE_URL . "/ppt/generateOutline";
+        $url = Api::BASE_URL . "/api/ppt/generateOutline";
         $headers = [
             "token" => $apiToken
         ];
@@ -64,7 +65,7 @@ class Api
 
     public static function generateContent($apiToken, $outlineMarkdown, $prompt = null, $dataUrl = null)
     {
-        $url = Api::BASE_URL . "/ppt/generateContent";
+        $url = Api::BASE_URL . "/api/ppt/generateContent";
         $headers = [
             "token" => $apiToken
         ];
@@ -97,7 +98,7 @@ class Api
 
     public static function randomOneTemplateId($apiToken)
     {
-        $url = Api::BASE_URL . "/ppt/randomTemplates";
+        $url = Api::BASE_URL . "/api/ppt/randomTemplates";
         $headers = [
             "token" => $apiToken
         ];
@@ -120,7 +121,7 @@ class Api
 
     public static function generatePptx($apiToken, $templateId, $markdown, $pptxProperty = false)
     {
-        $url = Api::BASE_URL . "/ppt/generatePptx";
+        $url = Api::BASE_URL . "/api/ppt/generatePptx";
         $headers = [
             "token" => $apiToken
         ];
@@ -142,7 +143,7 @@ class Api
 
     public static function downloadPptx($apiToken, $id)
     {
-        $url = Api::BASE_URL . "/ppt/downloadPptx";
+        $url = Api::BASE_URL . "/api/ppt/downloadPptx";
         $headers = [
             "token" => $apiToken
         ];
@@ -162,7 +163,7 @@ class Api
 
     public static function directGeneratePptx($apiToken, $stream, $templateId, $subject, $prompt = null, $dataUrl = null, $pptxProperty = false)
     {
-        $url = Api::BASE_URL . "/ppt/directGeneratePptx";
+        $url = Api::BASE_URL . "/api/ppt/directGeneratePptx";
         $headers = [
             "token" => $apiToken
         ];
