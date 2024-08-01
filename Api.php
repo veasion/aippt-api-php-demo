@@ -7,7 +7,7 @@ require 'HttpUtils.php';
 class Api
 {
 
-    const BASE_URL = "https://chatmee.cn";
+    const BASE_URL = "https://docmee.cn";
 
     public static function createApiToken($apiKey, $uid, $limit)
     {
